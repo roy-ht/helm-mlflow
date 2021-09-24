@@ -6,7 +6,8 @@ on:
       - master
     paths:
       - 'docker/*'
-      - '.mlflow-version'
+      - 'mlflow-version'
+      - '.github/workflows/docker.yaml'
 env:
   DOCKER_BUILDKIT: '1'
   REPO: ghcr.io/${{ github.repository_owner }}/mlflow
