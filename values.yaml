@@ -1,48 +1,33 @@
-replicaCount: 1
-
 image:
-  repository: ayadi05/mlflow
-  tag: 1.5.1
+  repository: ghcr.io/roy-ht/mlflow
   pullPolicy: IfNotPresent
 
-default_artifact_root: "s3://datalake/mlflow/artifacts"
-
-
+replicaCount: 1
+maxSurge: 1
+maxUnavailable: 0
+port: 80
+default_artifact_root: "/opt/artifact"
 
 db:
-  default:
-    enabled: false
+  enabled: false
   host: postgresql
   port: 5432
-  user: admin
-  password: password
-  database: postgres
+  user:
+  password_file: /secret/dbPassword
+  database:
 
-minio:
-  url: minio.default.svc.cluster.local:9000
-  accesskey: secret
-  secretkey: secret
+secret:
+  dbPassword: password
+
+s3:
+  endpoint:
 
 nameOverride: ""
 fullnameOverride: ""
 
 service:
-  type: NodePort
+  type: ClusterIP
   port: 80
-  annotations: {}
-  ## Set the LoadBalancer service type to internal only.
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer
-  ##
-  # loadBalancerIP:
-
-  ## Load Balancer sources
-  ## https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
-  ##
-  # loadBalancerSourceRanges:
-  # - 10.10.10.0/24
-
-## Configure Ingress based on the documentation here: https://kubernetes.io/docs/concepts/services-networking/ingress/
-##
 ingress:
   enabled: false
   annotations: {}

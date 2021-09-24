@@ -1,0 +1,22 @@
+name: Chart
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'docker/*'
+      - '.mlflow-version'
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v2
+      - uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+      - uses: helm/chart-releaser-action@v1.2.1
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
