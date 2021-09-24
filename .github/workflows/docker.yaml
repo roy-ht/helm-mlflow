@@ -23,7 +23,7 @@ jobs:
       - run: docker build docker --build-arg MLFLOW_VERSION -t $REPO:$MLFLOW_VERSION
       - uses: docker/login-action@v1
         with:
-          registry: docker.pkg.github.com
+          registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: docker push $REPO:$MLFLOW_VERSION
