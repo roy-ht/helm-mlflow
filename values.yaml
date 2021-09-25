@@ -8,16 +8,14 @@ maxUnavailable: 0
 port: 80
 default_artifact_root: "/opt/artifact"
 
-db:
+postgresql:
   enabled: false
-  host: postgresql
-  port: 5432
-  user:
-  password_file: /secret/dbPassword
-  database:
 
-secret:
-  dbPassword: password
+dbHost: postgresql.mlflow.svc.cluster.local
+dbPort: 5432
+dbUser: mlflow
+dbPassword: must_change_it
+dbDatabase: mlflow
 
 s3:
   endpoint:

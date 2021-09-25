@@ -38,20 +38,16 @@ spec:
           - "--port={{ .Values.port }}"
           - "--default-artifact-root={{ .Values.default_artifact_root }}"
           env:
-          - name: MLFLOW_PORT
-            value: "{{ .Values.port }}"
-          - name: DB_ENABLED
-            value: "{{ .Values.db.enabled }}"
           - name: DB_USER
-            value: "{{ .Values.db.user }}"
+            value: "{{ .Values.dbUser }}"
           - name: DB_PASSWORD_FILE
-            value: "{{ .Values.db.password_file }}"
+            value: /secret/dbPassword
           - name: DB_HOST
-            value: "{{ .Values.db.host }}"
+            value: "{{ .Values.dbHost }}"
           - name: DB_PORT
-            value: "{{ .Values.db.port }}"
+            value: "{{ .Values.dbPort }}"
           - name: DB_DATABASE
-            value: "{{ .Values.db.database }}"
+            value: "{{ .Values.dbDatabase }}"
           {{- if .Values.s3.endpoint }}
           - name: MLFLOW_S3_ENDPOINT_URL
             value: {{ .Values.s3.endpoint }}
