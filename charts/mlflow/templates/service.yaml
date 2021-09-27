@@ -27,6 +27,10 @@ spec:
       targetPort: {{ .Values.port }}
       protocol: TCP
       name: http
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: api
   selector:
     app.kubernetes.io/name: {{ include "mlflow.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
