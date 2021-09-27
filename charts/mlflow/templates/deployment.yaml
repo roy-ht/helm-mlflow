@@ -48,13 +48,13 @@ spec:
             value: "{{ .Values.dbPort }}"
           - name: DB_DATABASE
             value: "{{ .Values.dbDatabase }}"
-          {{- if .Values.s3.endpoint }}
+{{- if .Values.s3.endpoint }}
           - name: MLFLOW_S3_ENDPOINT_URL
             value: {{ .Values.s3.endpoint }}
-          {{- end }}
-          {{- if .Values.env }}
-          {{ toYaml .Values.env | indent 10 }}
-          {{- end }}
+{{- end }}
+{{- if .Values.env }}
+{{ toYaml .Values.env | indent 10 }}
+{{- end }}
           livenessProbe:
             httpGet:
               path: /
@@ -68,26 +68,26 @@ spec:
           volumeMounts:
           - mountPath: "/secret"
             name: secret
-          {{- if .Values.volumes }}
-          {{ toYaml .Values.volumeMounts | indent 10 }}
-          {{- end }}
-      {{- with .Values.nodeSelector }}
+{{- if .Values.volumes }}
+{{ toYaml .Values.volumeMounts | indent 10 }}
+{{- end }}
+{{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
+{{- end }}
+{{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
+{{- end }}
+{{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+{{- end }}
       volumes:
       - name: secret
         secret:
           secretName: {{ include "mlflow.fullname" . }}
           defaultMode: 0400
-      {{- if .Values.volumes }}
-      {{ toYaml .Values.volumes | indent 6 }}
-      {{- end }}
+{{- if .Values.volumes }}
+{{ toYaml .Values.volumes | indent 6 }}
+{{- end }}
