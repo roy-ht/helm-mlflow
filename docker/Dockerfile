@@ -13,4 +13,3 @@ RUN chmod 755 /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["--default-artifact-root", "/opt/artifact"]
 EXPOSE 80
-EXPOSE 5000

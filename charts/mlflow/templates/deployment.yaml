@@ -34,9 +34,6 @@ spec:
             - name: http
               containerPort: {{ .Values.port }}
               protocol: TCP
-            - name: api
-              containerPort: 5000
-              protocol: TCP
           args:
           - "--port={{ .Values.port }}"
           - "--default-artifact-root={{ .Values.default_artifact_root }}"
