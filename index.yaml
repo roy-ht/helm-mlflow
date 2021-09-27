@@ -3,6 +3,29 @@ entries:
   mlflow:
   - apiVersion: v2
     appVersion: 1.20.2
+    created: "2021-09-27T02:22:04.573581859Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~10.10.2
+    description: A Helm chart for MLFlow
+    digest: b2e8afc2309f7a74dc1edbb4ebbbf59cb2e4ea2adc0ceb7729c9e31fed4313ab
+    home: https://mlflow.org/
+    icon: https://mlflow.org/docs/latest/_static/MLflow-logo-final-black.png
+    keywords:
+    - mlflow
+    maintainers:
+    - email: aflc0x@gmail.com
+      name: roy-ht
+      url: https://github.com/roy-ht
+    name: mlflow
+    type: application
+    urls:
+    - https://github.com/roy-ht/helm-mlflow/releases/download/mlflow-1.0.5/mlflow-1.0.5.tgz
+    version: 1.0.5
+  - apiVersion: v2
+    appVersion: 1.20.2
     created: "2021-09-27T02:11:55.144069173Z"
     dependencies:
     - condition: postgresql.enabled
@@ -93,4 +116,4 @@ entries:
     urls:
     - https://github.com/roy-ht/helm-mlflow/releases/download/mlflow-1.0.1/mlflow-1.0.1.tgz
     version: 1.0.1
-generated: "2021-09-27T02:11:55.144086273Z"
+generated: "2021-09-27T02:22:04.573632159Z"
