@@ -63,8 +63,11 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - mountPath: "/secret"
-              name: secret
+          - mountPath: "/secret"
+            name: secret
+          {{- if .Values.volumes }}
+          {{ toYaml .Values.volumeMounts | indent 10 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
