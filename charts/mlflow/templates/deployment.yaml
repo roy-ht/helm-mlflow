@@ -52,6 +52,9 @@ spec:
           - name: MLFLOW_S3_ENDPOINT_URL
             value: {{ .Values.s3.endpoint }}
           {{- end }}
+          {{- if .Values.env }}
+          {{ toYaml .Values.env | indent 10 }}
+          {{- end }}
           livenessProbe:
             httpGet:
               path: /
