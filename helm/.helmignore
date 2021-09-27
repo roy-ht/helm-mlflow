@@ -22,6 +22,3 @@
 .project
 .idea/
 *.tmproj
-
-.circleci/
-.github
