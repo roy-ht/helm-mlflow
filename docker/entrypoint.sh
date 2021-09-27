@@ -2,11 +2,14 @@
 
 OPTION_BACKEND_STORE_URI=""
 if [ -n "${DB_HOST}" ]; then
-    _DB_PASS="${DB_PASSWORD}"
     if [ -n "${DB_PASSWORD_FILE}" ]; then
-        _DB_PASS="`cat ${DB_PASSWORD_FILE}`"
+        local pass=`cat ${DB_PASSWORD_FILE}`
+        echo "${DB_HOST}:${DB_PORT}:${DB_DATABASE}:${DB_USER}:${pass}" > ~/.pgpass
+        chmod 600 ~/.pgpass
+        OPTION_BACKEND_STORE_URI="--backend-store-uri=postgresql://${DB_USER}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
+    elif [ -n "${DB_PASSWORD}"]; then
+        OPTION_BACKEND_STORE_URI="--backend-store-uri=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}"
     fi
-    OPTION_BACKEND_STORE_URI="--backend-store-uri='postgresql://${DB_USER}:${_DB_PASS}@${DB_HOST}:${DB_PORT}/${DB_DATABASE}'"
 fi
 
 exec mlflow server --host 0.0.0.0 $OPTION_BACKEND_STORE_URI "$@"
