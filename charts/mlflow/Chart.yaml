@@ -2,7 +2,7 @@ apiVersion: v2
 name: mlflow
 description: A Helm chart for MLFlow
 type: application
-version: 2.1.1.1
+version: 2.1.2
 appVersion: 2.1.1
 keywords:
   - mlflow
