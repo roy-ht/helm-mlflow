@@ -6,7 +6,8 @@ replicaCount: 1
 maxSurge: 1
 maxUnavailable: 0
 port: 80
-default_artifact_root: "/opt/artifact"
+defaultArtifactRoot: null
+noServeArtifacts: false
 
 postgresql:
   enabled: false

@@ -36,7 +36,12 @@ spec:
               protocol: TCP
           args:
           - "--port={{ .Values.port }}"
-          - "--default-artifact-root={{ .Values.default_artifact_root }}"
+{{- if .Values.noServeArtifacts }}
+          - "--no-serve-artifacts"
+{{- end }}
+{{- if .Values.defaultArtifactRoot }}
+          - "--default-artifact-root={{ .Values.defaultArtifactRoot }}"
+{{- end }}
           env:
           - name: DB_USER
             value: "{{ .Values.dbUser }}"
